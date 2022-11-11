@@ -1,0 +1,11 @@
+name = "mi2tw"
+main = "src/index.ts"
+compatibility_date = "2022-11-10"
+kv_namespaces = [
+  { binding = "mi2tw_Auth", id = "f9ac10e6c1114581a211634daadf8be9", preview_id = "89731e3b2dc64a38b50b0c88985c61f7" },
+  { binding = "mi2tw_Uid", id = "f4ce8f56e30e469c8bbfbdc56d81eb84",  preview_id = "4ec29117bbed4ccaa2458f45932f917d" }
+]
+
+[vars]
+client_id = "MjhLb1RoMTdOeXh3X3pTWkZyU0U6MTpjaQ"
+URL="https://mi2tw.m-hayabusa.workers.dev"
