@@ -105,8 +105,7 @@ async function auth(code: string, env: Env): Promise<Response> {
 		}
 		await env.mi2tw_Auth.put(uid, JSON.stringify({ "access_token": data.access_token, "vaild_until": Date.now() + data.expires_in * 60, "refresh_token": data.refresh_token }));
 
-		const result = new Response(`<meta charset='utf-8'>これをMisskey側WebhookのURLに入力: <input type="text" readonly value="${env.URL}"></input><br>これをMisskey側WebhookのSecretに入力: <input id="uid" type="text" readonly value="${uid}"></input><br><a href="./revoke?uid=${uid}"><button>アクセスキーを削除</button></a>`);
-		result.headers.append("Content-type", "text/html");
+		const result = new Response(`<meta charset='utf-8'>これをMisskey側WebhookのURLに入力: <input type="text" readonly value="${env.URL}"></input><br>これをMisskey側WebhookのSecretに入力: <input id="uid" type="text" readonly value="${uid}"></input><br><a href="./revoke?uid=${uid}"><button>アクセスキーを削除</button></a>`, {headers: [["Content-type", "text/html"]]});
 		return result;
 	} else {
 		return new Response("認証に失敗しました");
@@ -166,8 +165,7 @@ export default {
 			}
 		}
 
-		const res = new Response(`<meta charset='utf-8'><h1>MisskeyのWebhook使って投稿をTwitterに転送するやつ</h1><br>(ローカル限定でない、#mi2tw がついてる、リプライでない、リノートでない、CWもついてない投稿のみ)<br><a href='https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${env.client_id}&redirect_uri=${env.URL}/callback&scope=offline.access%20users.read%20tweet.read%20tweet.write&state=state&code_challenge=challenge&code_challenge_method=plain'>ここで認証</a>`);
-		res.headers.append("Content-type", "text/html");
+		const res = new Response(`<meta charset='utf-8'><h1>MisskeyのWebhook使って投稿をTwitterに転送するやつ</h1><br>(ローカル限定でない、#mi2tw がついてる、リプライでない、リノートでない、CWもついてない投稿のみ)<br><a href='https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${env.client_id}&redirect_uri=${env.URL}/callback&scope=offline.access%20users.read%20tweet.read%20tweet.write&state=state&code_challenge=challenge&code_challenge_method=plain'>ここで認証</a>`, {headers: [["Content-type", "text/html"]]});
 		return res;
 	},
 };
